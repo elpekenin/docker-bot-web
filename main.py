@@ -51,7 +51,7 @@ def parse_poke(poke: str):
        
 
 async def version(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text = f"Container built on: `{build_date}` with commit [{commit}](https://github.com/elpekenin/docker-bot-web)."
+    text = f"Container built on: `{build_date}` with commit [{commit}](https://github.com/elpekenin/docker-bot-web)"
     await update.message.reply_text(text=text.replace("-", r"\-"), quote=False) 
     
 
