@@ -4,7 +4,7 @@ SHELL ["/bin/bash", "-c"]
 MAINTAINER Pablo (elpekenin) Martinez Bernal "martinezbernalpablo@gmail.com"
 
 # Download all files
-WORKDIR /bot
+WORKDIR /app
 RUN git clone https://github.com/elpekenin/docker-bot-web && shopt -s dotglob && mv -v docker-bot-web/* .
 
 # Install dependencies
