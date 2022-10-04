@@ -16,7 +16,7 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO,
     filemode="w",
-    filename="log.txt"
+    filename="logs/log.txt"
 )
 
 client = MongoClient(
@@ -51,9 +51,10 @@ def parse_poke(poke: str):
        
 
 async def version(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text=f"Container built on: `{build_date}` with commit [{commit}](https://github.com/elpekenin/docker-bot-web)."
-    await update.message.reply_text(text=text, quote=False) 
+    text = f"Container built on: `{build_date}` with commit [{commit}](https://github.com/elpekenin/docker-bot-web)."
+    await update.message.reply_text(text=text.replace("-", r"\-"), quote=False) 
     
+
 async def update_trade(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not check_permms(update):
         return -1 #Will also end ConvHand
