@@ -119,9 +119,10 @@ if __name__ == "__main__":
     application = (
         ApplicationBuilder()
         .token(config.token)
-        .defaults(
-            Defaults(parse_mode=constants.ParseMode.MARKDOWN_V2)
-        )
+        .defaults(Defaults(
+            parse_mode=constants.ParseMode.MARKDOWN_V2,
+            disable_web_page_preview=True
+        ))
         .build()
     )
 
