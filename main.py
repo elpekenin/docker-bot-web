@@ -19,12 +19,15 @@ logging.basicConfig(
     filename="logs/log.txt"
 )
 
-client = MongoClient(
-    config.db_ip,
-    username=config.db_user,
-    password=config.db_pass,
-    authSource=config.db_auth
-)
+if config.db_uri:
+    client = MongoClient(config.db_uri)
+else:
+    client = MongoClient(
+        config.db_ip,
+        username=config.db_user,
+        password=config.db_pass,
+        authSource=config.db_auth
+    )
 database = client["website"]
 
 
