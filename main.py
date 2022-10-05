@@ -20,7 +20,7 @@ logging.basicConfig(
 )
 
 if config.db_uri:
-    client = MongoClient(config.db_uri)
+    client = MongoClient(config.db_uri, serverSelectionTimeoutMS=5000)
 else:
     client = MongoClient(
         config.db_ip,
