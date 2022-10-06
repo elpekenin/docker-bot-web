@@ -60,7 +60,7 @@ async def version(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(text=text.replace("-", r"\-"), quote=False) 
 
 
-def update_region_html(pokemon_name):
+def update_region_html(name):
     _filter = {name: {"$exists": True}}
     for region in database["40dex"].find_one(_filter)["regions"]:
         post(
