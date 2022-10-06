@@ -9,3 +9,5 @@ db_auth = os.getenv("DB_AUTH")
 
 token    = os.getenv("BOT_TOKEN")
 username = os.getenv("BOT_USERNAME")
+
+rm_pass = os.getenv("RM_PASS")
