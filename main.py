@@ -93,7 +93,7 @@ async def update_trade(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(text=text.replace("-", r"\-"), quote=False)
         
         update_region_html(name)
-        await update.message.reply_text(text="HTML re-generated", quote=False)
+        await update.message.reply_text(text="HTML regenerated", quote=False)
 
     # If something goes wrong, let's inform instead of silently failing
     except Exception as e:
@@ -127,7 +127,7 @@ async def update_40(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(text=text.replace("-", r"\-"), quote=False)
         
         update_region_html(name)
-        await update.message.reply_text(text="HTML re-generated", quote=False)
+        await update.message.reply_text(text="HTML regenerated", quote=False)
 
     # If something goes wrong, let's inform instead of silently failing
     except Exception as e:
