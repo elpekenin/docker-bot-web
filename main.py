@@ -10,6 +10,7 @@ from telegram.ext import (
     CommandHandler,
     Defaults
 )
+from telegram.helpers import escape_markdown
 import traceback
 
 
@@ -70,7 +71,7 @@ def update_region_html(name):
             json={"password": config.rm_pass}
         )
         text += f"Query to: {url} got response: {res.text}\n"
-    return text
+    return escape_markdown(text, version=2)
 
 
 async def update_trade(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -130,8 +131,8 @@ async def update_40(update: Update, context: ContextTypes.DEFAULT_TYPE):
         text = f"Updated\.\n`{name}`'s 40dex counter is now: **{counter}**"
         await update.message.reply_text(text=text.replace("-", r"\-"), quote=False)
         
-        update_region_html(name)
-        await update.message.reply_text(text="HTML regenerated", quote=False)
+        text = update_region_html(name)
+        await update.message.reply_text(text=f"HTML regenerated:\n{text}", quote=False)
 
     # If something goes wrong, let's inform instead of silently failing
     except Exception as e:
