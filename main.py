@@ -64,7 +64,7 @@ def update_region_html(name):
     _filter = {name: {"$exists": True}}
     for region in database["40dex"].find_one(_filter)["regions"]:
         post(
-            f"http://elpekenin.tk/re-gen/{region}",
+            f"{config.scheme}://{config.domain}/re-gen/{region}",
             json={"password": config.rm_pass}
         )
 
