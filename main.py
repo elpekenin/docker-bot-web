@@ -62,11 +62,15 @@ async def version(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def update_region_html(name):
     _filter = {name: {"$exists": True}}
+    text = ""
     for region in database["40dex"].find_one(_filter)["regions"]:
-        post(
-            f"{config.scheme}://{config.domain}/re-gen/{region}",
+        url   = f"{config.scheme}://{config.domain}/40dex/re-gen/{region}"
+        res = post(
+            url,
             json={"password": config.rm_pass}
         )
+        text += f"Query to: {url} got response: {request.text}\n"
+    return text
 
 
 async def update_trade(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -91,9 +95,9 @@ async def update_trade(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         text = f"Updated\.\n`{name}`'s trade counter is now: **{counter}**"
         await update.message.reply_text(text=text.replace("-", r"\-"), quote=False)
-        
-        update_region_html(name)
-        await update.message.reply_text(text="HTML regenerated", quote=False)
+
+        text = update_region_html(name)
+        await update.message.reply_text(text=f"HTML regenerated:\n{text}", quote=False)
 
     # If something goes wrong, let's inform instead of silently failing
     except Exception as e:
