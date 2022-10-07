@@ -11,3 +11,5 @@ token    = os.getenv("BOT_TOKEN")
 username = os.getenv("BOT_USERNAME")
 
 rm_pass = os.getenv("RM_PASS")
+
+gh_link = os.getenv("GH_LINK")
