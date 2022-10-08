@@ -10,7 +10,6 @@ from telegram.ext import (
     CommandHandler,
     Defaults
 )
-from telegram.helpers import escape_markdown
 import traceback
 
 
@@ -65,13 +64,13 @@ def update_region_html(name):
     _filter = {name: {"$exists": True}}
     text = ""
     for region in database["40dex"].find_one(_filter)["regions"]:
-        url   = f"{config.scheme}://{config.domain}/40dex/re-gen/{region}"
+        url = f"{config.scheme}://{config.domain}/40dex/re-gen/{region}/"
         res = post(
             url,
             json={"password": config.rm_pass}
         )
-        text += f"Query to: {url} got response: {res.text}\n"
-    return escape_markdown(text, version=2)
+        text += f"Query to: {url} got response: {res.status_code}\n"
+    return text
 
 
 async def update_trade(update: Update, context: ContextTypes.DEFAULT_TYPE):
