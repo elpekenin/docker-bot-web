@@ -69,7 +69,7 @@ def update_region_html(name):
             url,
             json={"password": config.rm_pass}
         )
-        text += f"Query to: [{url}]({url}) got response: {res.status_code}\n"
+        text += f"`{url}`: {res.status_code}\n"
     return text
 
 
